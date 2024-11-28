@@ -1,1 +1,1 @@
-# Wack-A-Beat
+# Whack-A-Beat
