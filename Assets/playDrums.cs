@@ -55,32 +55,25 @@ public class playDrums : MonoBehaviour
             {
                 if(midiEvent.Command == MPTKCommand.NoteOn && midiEvent.Velocity > 0)
                 {
-                    Debug.Log(midiEvent.Value);
-                    switch(midiEvent.Value) 
+                    //MIDI values: https://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html#BMA1_3
+                    Debug.Log($"Channel: {midiEvent.Channel}, Note: {midiEvent.Value}, Velocity: {midiEvent.Velocity}, Time: {midiEvent.RealTime}");
+                    if (midiEvent.Value == 35 || midiEvent.Value == 36)
                     {
-                        case 0:
-                        {
-                            //Do Nothing
-                        } break;
-                        case 35:
-                        {
-                            changeSprite("kick drum");
-                        } break;
-                        case 38:
-                        {
-                            changeSprite("snare drum");
-                        } break;
-                        case 42:
-                        {
-                            changeSprite("hi-hat");
-                        } break;
-                        case 51:
-                        {
-                            changeSprite("ride cymbal");
-                        } break;
-                        default:
-                        break;
-                    }  
+                        changeSprite("kick drum");
+                    }
+                    else if (midiEvent.Value == 38 || midiEvent.Value == 40)
+                    {
+                        changeSprite("snare drum");
+                    }
+                    else if (midiEvent.Value == 42)
+                    {
+                        //Debug.Log("hi-hat");
+                        changeSprite("hi hat");
+                    }
+                    else if (midiEvent.Value == 51)
+                    {
+                        changeSprite("ride cymbal");
+                    }
                 }
             }
         }
@@ -106,7 +99,7 @@ public class playDrums : MonoBehaviour
 
     void changeSprite(String objectName)
     {
-        GameObject drum = GameObject.Find(name);
+        GameObject drum = GameObject.Find(objectName);
         
         float r = UnityEngine.Random.Range(0f, 1f);
         float g = UnityEngine.Random.Range(0f, 1f);

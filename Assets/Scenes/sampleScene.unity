@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1354f62bf79ab44ea8a3fd25d727b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midiFilePlayer: {fileID: 0}
+  midiFilePlayer: {fileID: 188996063}
   drum: 0
   mole: {fileID: 0}
 --- !u!1 &1961937299
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1354f62bf79ab44ea8a3fd25d727b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midiFilePlayer: {fileID: 0}
+  midiFilePlayer: {fileID: 188996063}
   drum: 0
   mole: {fileID: 0}
 --- !u!1 &2001223621
