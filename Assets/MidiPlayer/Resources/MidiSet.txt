@@ -38,6 +38,7 @@
     <string>Buddy Guy - Midnight Train</string>
     <string>Christopher Cross - Sailing</string>
     <string>Conan The Barbarian</string>
+    <string>d_PR5469</string>
     <string>Dark Cloud 2 - Dark Chronicle</string>
     <string>Dark Cloud 2 - Peace</string>
     <string>Dark Cloud 2 - Shop Theme</string>

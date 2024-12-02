@@ -24,17 +24,11 @@ public class playDrums : MonoBehaviour
     public drumkit drum;
     public Timer timer; 
     private bool isPlaying = false;
-    private GameObject audio;
-    private AudioSource audioSource; 
-    private double[] timeSignatures = {};
-    private int[,] beats = { {}, {} };
     public Sprite mole; 
     private int targetChannel = 9;
 
     void Start()
     {
-        //timer.BeginInit();
-        audio = GameObject.Find("Audio Manager");
         midiFilePlayer = FindAnyObjectByType<MidiFilePlayer>();
 
         if(midiFilePlayer == null)
@@ -43,7 +37,7 @@ public class playDrums : MonoBehaviour
             return;
         }
 
-        midiFilePlayer.MPTK_MidiIndex = 72;
+        midiFilePlayer.MPTK_MidiIndex = 27;
 
         MidiLoad midiLoaded = midiFilePlayer.MPTK_Load();
         
@@ -59,32 +53,35 @@ public class playDrums : MonoBehaviour
             // Check if the event is on the target channel
             if (midiEvent.Channel == targetChannel)
             {
-                Debug.Log(midiEvent.Value);
-                switch(midiEvent.Value) 
+                if(midiEvent.Command == MPTKCommand.NoteOn && midiEvent.Velocity > 0)
                 {
-                    case 0:
+                    Debug.Log(midiEvent.Value);
+                    switch(midiEvent.Value) 
                     {
-                        //Do Nothing
-                    } break;
-                    case 35:
-                    {
-                        changeSprite("kick drum");
-                    } break;
-                    case 38:
-                    {
-                        changeSprite("snare drum");
-                    } break;
-                    case 42:
-                    {
-                        changeSprite("hi-hat");
-                    } break;
-                    case 51:
-                    {
-                        changeSprite("ride cymbal");
-                    } break;
-                    default:
-                    break;
-                }  
+                        case 0:
+                        {
+                            //Do Nothing
+                        } break;
+                        case 35:
+                        {
+                            changeSprite("kick drum");
+                        } break;
+                        case 38:
+                        {
+                            changeSprite("snare drum");
+                        } break;
+                        case 42:
+                        {
+                            changeSprite("hi-hat");
+                        } break;
+                        case 51:
+                        {
+                            changeSprite("ride cymbal");
+                        } break;
+                        default:
+                        break;
+                    }  
+                }
             }
         }
     }
