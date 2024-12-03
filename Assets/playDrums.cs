@@ -27,8 +27,14 @@ public class playDrums : MonoBehaviour
     public Sprite mole; 
     private int targetChannel = 9;
 
+    public AudioClip kickSound;
+    public AudioClip snareSound;
+    public AudioClip hiHatSound;
+    public AudioClip rideCymbalSound;
+    private AudioSource audioSource;
     void Start()
     {
+
         midiFilePlayer = FindAnyObjectByType<MidiFilePlayer>();
 
         if(midiFilePlayer == null)
@@ -44,6 +50,10 @@ public class playDrums : MonoBehaviour
         midiFilePlayer.OnEventNotesMidi.AddListener(OnMidiEvent);
 
         midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+
+    
     }
 
      void OnMidiEvent(List<MPTKEvent> midiEvents)
@@ -100,19 +110,93 @@ public class playDrums : MonoBehaviour
             isPlaying = true; 
             //audioSource = audio.GetComponent<AudioSource>();
             //audioSource.Play();
-            changeSprite("hi-hat");
+             PlaySound(hiHatSound);
+            TriggerDrum(drumkit.HIHAT);
+           // changeSprite("hi-hat");
         }
+
+            if (Input.GetKeyDown(KeyCode.J)) // Snare Drum
+        {
+           
+           PlaySound(snareSound);
+            TriggerDrum(drumkit.SNAREDRUM);
+            //changeSprite("snare drum");
+         }
+
+            if (Input.GetKeyDown(KeyCode.K)) // Kick Drum
+         {
+             PlaySound(kickSound);
+             TriggerDrum(drumkit.KICKDRUM);
+         }
+    if (Input.GetKeyDown(KeyCode.L)) // Ride Cymbal
+        {
+            PlaySound(rideCymbalSound);
+            TriggerDrum(drumkit.RIDECYMBAL);
+        }
+}
+
+
+void PlaySound(AudioClip clip)
+{
+    if (clip != null)
+    {
+        Debug.Log($"Playing sound: {clip.name}");
+        audioSource.PlayOneShot(clip);
+    }
+    else
+    {
+        //Debug.LogWarning($"No sound assigned for this drum! Called from: {new System.Diagnostics.StackTrace()}");
+    }
+    
+}
+    
+    
+
+void TriggerDrum(drumkit drumType)
+{
+    string drumName = "";
+    switch (drumType)
+    {
+        case drumkit.KICKDRUM:
+            drumName = "kick drum";
+            break;
+        case drumkit.SNAREDRUM:
+            drumName = "snare drum";
+            break;
+        case drumkit.HIHAT:
+            drumName = "hi-hat";
+            break;
+        case drumkit.RIDECYMBAL:
+            drumName = "ride cymbal";
+            break;
+        default:
+            Debug.LogWarning("Invalid drum type!");
+            return;
     }
 
-    void changeSprite(String objectName)
+    Debug.Log($"Triggered {drumName}");
+    changeSprite(drumName);
+}
+
+void changeSprite(string objectName)
+{
+    GameObject drum = GameObject.Find(objectName);
+
+    if (drum != null)
     {
-        GameObject drum = GameObject.Find(name);
-        
         float r = UnityEngine.Random.Range(0f, 1f);
         float g = UnityEngine.Random.Range(0f, 1f);
         float b = UnityEngine.Random.Range(0f, 1f);
-        
+
         Color colour = new Color(r, g, b);
         drum.GetComponent<SpriteRenderer>().color = colour;
+
     }
+    else
+    {
+        Debug.LogError($"Drum object '{objectName}' not found!");
+    }
+}
+
+
 }

@@ -642,6 +642,10 @@ MonoBehaviour:
   midiFilePlayer: {fileID: 188996063}
   drum: 0
   mole: {fileID: 0}
+  kickSound: {fileID: 0}
+  snareSound: {fileID: 0}
+  hiHatSound: {fileID: 8300000, guid: 9f108e5187fd8a9419a4a019cc2517f8, type: 3}
+  rideCymbalSound: {fileID: 0}
 --- !u!1 &1678226584
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +749,10 @@ MonoBehaviour:
   midiFilePlayer: {fileID: 0}
   drum: 0
   mole: {fileID: 0}
+  kickSound: {fileID: 0}
+  snareSound: {fileID: 8300000, guid: 8f9d05d9077a99048942693ba7fc00e9, type: 3}
+  hiHatSound: {fileID: 0}
+  rideCymbalSound: {fileID: 0}
 --- !u!1 &1961937299
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,6 +856,10 @@ MonoBehaviour:
   midiFilePlayer: {fileID: 0}
   drum: 0
   mole: {fileID: 0}
+  kickSound: {fileID: 0}
+  snareSound: {fileID: 0}
+  hiHatSound: {fileID: 0}
+  rideCymbalSound: {fileID: 8300000, guid: f0034494c0c40fa479339f2c255e0773, type: 3}
 --- !u!1 &2001223621
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +963,10 @@ MonoBehaviour:
   midiFilePlayer: {fileID: 188996063}
   drum: 0
   mole: {fileID: 21300000, guid: 88929dcee311c1744b3d2c4c5968acf8, type: 3}
+  kickSound: {fileID: 8300000, guid: d1bdc37b77e476043820650f393189f5, type: 3}
+  snareSound: {fileID: 0}
+  hiHatSound: {fileID: 0}
+  rideCymbalSound: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -960,6 +976,6 @@ SceneRoots:
   - {fileID: 2001223623}
   - {fileID: 1678226586}
   - {fileID: 1351456496}
-  - {fileID: 1961937301}
   - {fileID: 190968048}
   - {fileID: 264998186}
+  - {fileID: 1961937301}
