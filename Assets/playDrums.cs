@@ -59,20 +59,20 @@ public class playDrums : MonoBehaviour
                     Debug.Log($"Channel: {midiEvent.Channel}, Note: {midiEvent.Value}, Velocity: {midiEvent.Velocity}, Time: {midiEvent.RealTime}");
                     if (midiEvent.Value == 35 || midiEvent.Value == 36)
                     {
-                        changeSprite("kick drum");
+                        activateSprite("kick drum");
                     }
                     else if (midiEvent.Value == 38 || midiEvent.Value == 40)
                     {
-                        changeSprite("snare drum");
+                        activateSprite("snare drum");
                     }
                     else if (midiEvent.Value == 42)
                     {
                         //Debug.Log("hi-hat");
-                        changeSprite("hi hat");
+                        activateSprite("hi hat");
                     }
                     else if (midiEvent.Value == 51)
                     {
-                        changeSprite("ride cymbal");
+                        activateSprite("ride cymbal");
                     }
                 }
             }
@@ -93,19 +93,39 @@ public class playDrums : MonoBehaviour
             isPlaying = true; 
             //audioSource = audio.GetComponent<AudioSource>();
             //audioSource.Play();
-            changeSprite("hi-hat");
+            activateSprite("hi-hat");
         }
     }
 
-    void changeSprite(String objectName)
+    void activateSprite(string objectName)
     {
         GameObject drum = GameObject.Find(objectName);
-        
-        float r = UnityEngine.Random.Range(0f, 1f);
-        float g = UnityEngine.Random.Range(0f, 1f);
-        float b = UnityEngine.Random.Range(0f, 1f);
-        
-        Color colour = new Color(r, g, b);
-        drum.GetComponent<SpriteRenderer>().color = colour;
+
+        if (drum != null)
+        {
+            SpriteRenderer spriteRenderer = drum.GetComponent<SpriteRenderer>();
+
+            if (spriteRenderer != null)
+            {
+                // Start coroutine to toggle sprite visibility
+                StartCoroutine(ToggleSpriteVisibility(spriteRenderer));
+            }
+        }
+    }
+
+    private IEnumerator ToggleSpriteVisibility(SpriteRenderer spriteRenderer)
+    {
+        // Make the sprite visible
+        Color visibleColor = spriteRenderer.color;
+        visibleColor.a = 1f;
+        spriteRenderer.color = visibleColor;
+
+        // Wait for specified time, adjust this according to speed
+        yield return new WaitForSeconds(0.35f);
+
+        // Make the sprite transparent again
+        Color transparentColor = spriteRenderer.color;
+        transparentColor.a = 0f;
+        spriteRenderer.color = transparentColor;
     }
 }
