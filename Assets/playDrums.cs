@@ -166,7 +166,36 @@ void changeSprite(string objectName)
     {
         Debug.LogError($"Drum object '{objectName}' not found!");
     }
-}
 
+     void activateSprite(string objectName)
+    {
+        GameObject drum = GameObject.Find(objectName);
 
+        if (drum != null)
+        {
+            SpriteRenderer spriteRenderer = drum.GetComponent<SpriteRenderer>();
+
+            if (spriteRenderer != null)
+            {
+                // Start coroutine to toggle sprite visibility
+                StartCoroutine(ToggleSpriteVisibility(spriteRenderer));
+            }
+        }
+    }
+
+    private IEnumerator ToggleSpriteVisibility(SpriteRenderer spriteRenderer)
+    {
+        // Make the sprite visible
+        Color visibleColor = spriteRenderer.color;
+        visibleColor.a = 1f;
+        spriteRenderer.color = visibleColor;
+
+        // Wait for specified time, adjust this according to speed
+        yield return new WaitForSeconds(0.35f);
+
+        // Make the sprite transparent again
+        Color transparentColor = spriteRenderer.color;
+        transparentColor.a = 0f;
+        spriteRenderer.color = transparentColor;
+    }
 }
