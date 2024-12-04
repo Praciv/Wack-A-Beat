@@ -145,26 +145,6 @@ public class playDrums : MonoBehaviour
         activateSprite(drumName);
     }
 
-    void changeSprite(string objectName)
-    {
-        GameObject drum = GameObject.Find(objectName);
-
-        if (drum != null)
-        {
-            float r = UnityEngine.Random.Range(0f, 1f);
-            float g = UnityEngine.Random.Range(0f, 1f);
-            float b = UnityEngine.Random.Range(0f, 1f);
-
-            Color colour = new Color(r, g, b);
-            drum.GetComponent<SpriteRenderer>().color = colour;
-
-        }
-        else
-        {
-            Debug.LogError($"Drum object '{objectName}' not found!");
-        }
-    }
-
     void activateSprite(string objectName)
     {
         GameObject drum = GameObject.Find(objectName);
