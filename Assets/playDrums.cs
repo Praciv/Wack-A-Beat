@@ -41,8 +41,6 @@ public class playDrums : MonoBehaviour
         midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
 
         audioSource = gameObject.AddComponent<AudioSource>();
-
-    
     }
 
      void OnMidiEvent(List<MPTKEvent> midiEvents)
@@ -56,7 +54,7 @@ public class playDrums : MonoBehaviour
                 {
                     //MIDI values: https://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html#BMA1_3
                     Debug.Log($"Channel: {midiEvent.Channel}, Note: {midiEvent.Value}, Velocity: {midiEvent.Velocity}, Time: {midiEvent.RealTime}");
-                    changeSprite(formatDrumValues(midiEvent.Value));
+                    activateSprite(formatDrumValues(midiEvent.Value));
                 }
             }
         }
@@ -92,82 +90,82 @@ public class playDrums : MonoBehaviour
             PlaySound(rideCymbalSound);
             TriggerDrum(51);
         }
-}
-
-String formatDrumValues(int code)
-{
-    String drumName = " ";
-    if (code == 35 || code == 36)
-    {
-        drumName = "kick drum";
-    }
-    else if (code == 38 || code == 40)
-    {
-        drumName = "snare drum";
-    }
-    else if (code == 42)
-    {
-        drumName = "hi hat";
-    }
-    else if (code == 51)
-    {
-        drumName = "ride cymbal";
     }
 
-    return drumName; 
-}
-
-
-void PlaySound(AudioClip clip)
-{
-    if (clip != null)
+    String formatDrumValues(int code)
     {
-        Debug.Log($"Playing sound: {clip.name}");
-        audioSource.PlayOneShot(clip);
+        String drumName = " ";
+        if (code == 35 || code == 36)
+        {
+            drumName = "kick drum";
+        }
+        else if (code == 38 || code == 40)
+        {
+            drumName = "snare drum";
+        }
+        else if (code == 42)
+        {
+            drumName = "hi hat";
+        }
+        else if (code == 51)
+        {
+            drumName = "ride cymbal";
+        }
+
+        return drumName; 
     }
-    else
+
+
+    void PlaySound(AudioClip clip)
     {
-        //Debug.LogWarning($"No sound assigned for this drum! Called from: {new System.Diagnostics.StackTrace()}");
+        if (clip != null)
+        {
+            Debug.Log($"Playing sound: {clip.name}");
+            audioSource.PlayOneShot(clip);
+        }
+        else
+        {
+            //Debug.LogWarning($"No sound assigned for this drum! Called from: {new System.Diagnostics.StackTrace()}");
+        }
     }
     
-}
-    
     
 
-void TriggerDrum(int drumValue)
-{
-    string drumName = formatDrumValues(drumValue);
-    
-    if(drumName == " ")
+    void TriggerDrum(int drumValue)
     {
-        Debug.LogWarning("Invalid drum type!");
-        return; 
+        string drumName = formatDrumValues(drumValue);
+        
+        if(drumName == " ")
+        {
+            Debug.LogWarning("Invalid drum type!");
+            return; 
+        }
+
+        Debug.Log($"Triggered {drumName}");
+        activateSprite(drumName);
     }
 
-    Debug.Log($"Triggered {drumName}");
-    changeSprite(drumName);
-}
-
-void changeSprite(string objectName)
-{
-    GameObject drum = GameObject.Find(objectName);
-
-    if (drum != null)
+    void changeSprite(string objectName)
     {
-        float r = UnityEngine.Random.Range(0f, 1f);
-        float g = UnityEngine.Random.Range(0f, 1f);
-        float b = UnityEngine.Random.Range(0f, 1f);
+        GameObject drum = GameObject.Find(objectName);
 
-        Color colour = new Color(r, g, b);
-        drum.GetComponent<SpriteRenderer>().color = colour;
+        if (drum != null)
+        {
+            float r = UnityEngine.Random.Range(0f, 1f);
+            float g = UnityEngine.Random.Range(0f, 1f);
+            float b = UnityEngine.Random.Range(0f, 1f);
 
-    }
-    else
-    {
-        Debug.LogError($"Drum object '{objectName}' not found!");
+            Color colour = new Color(r, g, b);
+            drum.GetComponent<SpriteRenderer>().color = colour;
+
+        }
+        else
+        {
+            Debug.LogError($"Drum object '{objectName}' not found!");
+        }
     }
 
-     void activateSprite(string objectName)
+    void activateSprite(string objectName)
     {
         GameObject drum = GameObject.Find(objectName);
 
