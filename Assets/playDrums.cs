@@ -97,19 +97,19 @@ public class playDrums : MonoBehaviour
         String drumName = " ";
         if (code == 35 || code == 36)
         {
-            drumName = "kick drum";
+            drumName = "kick drum mole";
         }
         else if (code == 38 || code == 40)
         {
-            drumName = "snare drum";
+            drumName = "snare drum mole";
         }
         else if (code == 42)
         {
-            drumName = "hi hat";
+            drumName = "hi hat mole";
         }
         else if (code == 51)
         {
-            drumName = "ride cymbal";
+            drumName = "ride cymbal mole";
         }
 
         return drumName; 
