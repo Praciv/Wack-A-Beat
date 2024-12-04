@@ -9,20 +9,9 @@ using UnityEngine.AI;
 using UnityEngine.Audio;
 using UnityEngine.Experimental.AI;
 
-public enum drumkit 
-{
-    NODRUM = 0,
-    KICKDRUM = 35,
-    SNAREDRUM = 38,
-    HIHAT = 42,
-    RIDECYMBAL = 51
-}
-
 public class playDrums : MonoBehaviour
 {
     public MidiFilePlayer midiFilePlayer; 
-    public drumkit drum;
-    public Timer timer; 
     private bool isPlaying = false;
     public Sprite mole; 
     private int targetChannel = 9;
@@ -67,23 +56,7 @@ public class playDrums : MonoBehaviour
                 {
                     //MIDI values: https://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html#BMA1_3
                     Debug.Log($"Channel: {midiEvent.Channel}, Note: {midiEvent.Value}, Velocity: {midiEvent.Velocity}, Time: {midiEvent.RealTime}");
-                    if (midiEvent.Value == 35 || midiEvent.Value == 36)
-                    {
-                        changeSprite("kick drum");
-                    }
-                    else if (midiEvent.Value == 38 || midiEvent.Value == 40)
-                    {
-                        changeSprite("snare drum");
-                    }
-                    else if (midiEvent.Value == 42)
-                    {
-                        //Debug.Log("hi-hat");
-                        changeSprite("hi hat");
-                    }
-                    else if (midiEvent.Value == 51)
-                    {
-                        changeSprite("ride cymbal");
-                    }
+                    changeSprite(formatDrumValues(midiEvent.Value));
                 }
             }
         }
@@ -100,32 +73,48 @@ public class playDrums : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            isPlaying = true; 
-            //audioSource = audio.GetComponent<AudioSource>();
-            //audioSource.Play();
-             PlaySound(hiHatSound);
-            TriggerDrum(drumkit.HIHAT);
-           // changeSprite("hi-hat");
+            PlaySound(hiHatSound);
+            TriggerDrum(42);
         }
-
-            if (Input.GetKeyDown(KeyCode.J)) // Snare Drum
+        else if (Input.GetKeyDown(KeyCode.J)) // Snare Drum
         {
            
-           PlaySound(snareSound);
-            TriggerDrum(drumkit.SNAREDRUM);
-            //changeSprite("snare drum");
-         }
-
-            if (Input.GetKeyDown(KeyCode.K)) // Kick Drum
-         {
-             PlaySound(kickSound);
-             TriggerDrum(drumkit.KICKDRUM);
-         }
-    if (Input.GetKeyDown(KeyCode.L)) // Ride Cymbal
+            PlaySound(snareSound);
+            TriggerDrum(38);
+        }
+        else if (Input.GetKeyDown(KeyCode.K)) // Kick Drum
+        {
+            PlaySound(kickSound);
+            TriggerDrum(35);
+        }
+        else if (Input.GetKeyDown(KeyCode.L)) // Ride Cymbal
         {
             PlaySound(rideCymbalSound);
-            TriggerDrum(drumkit.RIDECYMBAL);
+            TriggerDrum(51);
         }
+}
+
+String formatDrumValues(int code)
+{
+    String drumName = " ";
+    if (code == 35 || code == 36)
+    {
+        drumName = "kick drum";
+    }
+    else if (code == 38 || code == 40)
+    {
+        drumName = "snare drum";
+    }
+    else if (code == 42)
+    {
+        drumName = "hi hat";
+    }
+    else if (code == 51)
+    {
+        drumName = "ride cymbal";
+    }
+
+    return drumName; 
 }
 
 
@@ -145,26 +134,14 @@ void PlaySound(AudioClip clip)
     
     
 
-void TriggerDrum(drumkit drumType)
+void TriggerDrum(int drumValue)
 {
-    string drumName = "";
-    switch (drumType)
+    string drumName = formatDrumValues(drumValue);
+    
+    if(drumName == " ")
     {
-        case drumkit.KICKDRUM:
-            drumName = "kick drum";
-            break;
-        case drumkit.SNAREDRUM:
-            drumName = "snare drum";
-            break;
-        case drumkit.HIHAT:
-            drumName = "hi-hat";
-            break;
-        case drumkit.RIDECYMBAL:
-            drumName = "ride cymbal";
-            break;
-        default:
-            Debug.LogWarning("Invalid drum type!");
-            return;
+        Debug.LogWarning("Invalid drum type!");
+        return; 
     }
 
     Debug.Log($"Triggered {drumName}");
