@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Timers;
 using MidiPlayerTK;
 using UnityEditor;
@@ -12,8 +13,6 @@ using UnityEngine.Experimental.AI;
 public class playDrums : MonoBehaviour
 {
     public MidiFilePlayer midiFilePlayer; 
-    private bool isPlaying = false;
-    public Sprite mole; 
     private int targetChannel = 9;
 
     public AudioClip kickSound;
@@ -33,18 +32,26 @@ public class playDrums : MonoBehaviour
             return;
         }
 
-        midiFilePlayer.MPTK_MidiIndex = 27;
+        midiFilePlayer.MPTK_MidiIndex = 56;
 
         MidiLoad midiLoaded = midiFilePlayer.MPTK_Load();
         
         midiFilePlayer.OnEventNotesMidi.AddListener(OnMidiEvent);
 
-        midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
-
+        StartCoroutine(sleep());
+        
         audioSource = gameObject.AddComponent<AudioSource>();
 
         //songAudioSource.Play();
-        songAudioSource.PlayDelayed(3.0f);
+        //songAudioSource.PlayDelayed(3.0f);
+    }
+
+    IEnumerator sleep()
+    {
+        yield return new WaitForSeconds(1.2f);
+
+        midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
+
     }
 
      void OnMidiEvent(List<MPTKEvent> midiEvents)

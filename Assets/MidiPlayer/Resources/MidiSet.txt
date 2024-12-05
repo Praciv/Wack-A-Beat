@@ -65,6 +65,9 @@
     <string>Louis Armstrong - Hello Dolly</string>
     <string>Louis Armstrong - What A Wonderful World</string>
     <string>Maji Call Jarr</string>
+    <string>Michael Jackson - Billie Jean</string>
+    <string>Michael_Jackson_-_Billie_Jean</string>
+    <string>Michael_Jackson_Billie_Jean1</string>
     <string>Mike Oldfield - Incantations 1</string>
     <string>Mike Oldfield - Incantations 3</string>
     <string>Mike Oldfield - Moonlight_Shadow</string>
@@ -85,6 +88,7 @@
     <string>Patti Smith - Because the Night</string>
     <string>Pergolesi - Stabat Mater</string>
     <string>Queen_-_Another_One_Bites_the_Dust</string>
+    <string>Radiohead_-_Creep</string>
     <string>Reayo - Amor de Hombre</string>
     <string>Salvador Henri - Jardin D'hiver</string>
     <string>Satie - Gnossienne 4</string>

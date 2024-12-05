@@ -15,7 +15,7 @@ public class SongPlayer : MonoBehaviour
         }
 
         // Play the song with a delay
-        songAudioSource.PlayDelayed(delay);
+        songAudioSource.Play();
         Debug.Log($"Song will play with a delay of {delay} seconds");
     }
 }

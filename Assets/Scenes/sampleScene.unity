@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 1351456495}
   - component: {fileID: 1351456497}
   m_Layer: 0
-  m_Name: hi-hat
+  m_Name: hi hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,7 +640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 188996063}
-  drum: 0
   mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
@@ -747,7 +746,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 188996063}
-  drum: 0
   mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 8300000, guid: 8f9d05d9077a99048942693ba7fc00e9, type: 3}
@@ -854,7 +852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 188996063}
-  drum: 0
   mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
@@ -961,7 +958,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 188996063}
-  drum: 0
   mole: {fileID: 21300000, guid: 88929dcee311c1744b3d2c4c5968acf8, type: 3}
   kickSound: {fileID: 8300000, guid: d1bdc37b77e476043820650f393189f5, type: 3}
   snareSound: {fileID: 0}
