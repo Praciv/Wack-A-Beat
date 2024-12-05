@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 872654568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14170071, y: -0.38806942, z: -0.006454964}
+  m_LocalPosition: {x: -0.14170071, y: -0.38806942, z: 0.70501614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -256,7 +255,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 316fe3d4ca055f143913bfcd2c8df740, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.99607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -275,8 +274,8 @@ Transform:
   m_GameObject: {fileID: 895353235}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.047, y: 1.68, z: 0.1}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 0.15}
+  m_LocalPosition: {x: 5.053, y: -2.79, z: 0.811471}
+  m_LocalScale: {x: 3, y: 3, z: 0.30000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -309,8 +308,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0a2e2de6f9a80294da8ce98603fa76ac, type: 3}
-  m_Resource: {fileID: 8300000, guid: 0a2e2de6f9a80294da8ce98603fa76ac, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3bcb508a2401aa8428f2c3e7988bb3e6, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3bcb508a2401aa8428f2c3e7988bb3e6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -423,8 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4c484723b4ef349ba069916638a741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songAudioSource: {fileID: 0}
-  delay: 5.85
+  songAudioSource: {fileID: 984566961}
+  delay: 0
 --- !u!1 &1091437904
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -617,13 +615,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119590541}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.656, y: 1.73, z: -0.011471184}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.008}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: -5.39, y: -2.46, z: 0.70147085}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.014}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!114 &1217010891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,7 +668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 21300000, guid: 88929dcee311c1744b3d2c4c5968acf8, type: 3}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -721,7 +718,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 316fe3d4ca055f143913bfcd2c8df740, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.99607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -740,8 +737,8 @@ Transform:
   m_GameObject: {fileID: 1232360873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22, y: -1.56, z: 0.1}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 0.15}
+  m_LocalPosition: {x: -2.7, y: 3.333, z: 0.811471}
+  m_LocalScale: {x: 3, y: 3, z: 0.30000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -777,7 +774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -828,7 +824,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 316fe3d4ca055f143913bfcd2c8df740, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.99607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -847,8 +843,8 @@ Transform:
   m_GameObject: {fileID: 1690912090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.72, y: 1.73, z: 0.1}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 0.15}
+  m_LocalPosition: {x: -5.396, y: -2.46, z: 0.811471}
+  m_LocalScale: {x: 3, y: 3, z: 0.30000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -884,7 +880,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 21300000, guid: 88929dcee311c1744b3d2c4c5968acf8, type: 3}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -953,13 +948,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797669588}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.244, y: -1.543, z: -0.011471184}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.008}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: -2.62, y: 3.35, z: 0.7}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.014}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!1 &2013137833
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,7 +986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -1060,13 +1054,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013137833}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.14, y: 1.68, z: -0.011471184}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.008}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: 5.16, y: -2.79, z: 0.6999998}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.014}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!1001 &2040024502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1081,7 +1075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4314086310842868, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.38
       objectReference: {fileID: 0}
     - target: {fileID: 4314086310842868, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1140,16 +1134,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
+      propertyPath: volumeGlobal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: MPTK_LogEvents
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: midiNameToPlay
-      value: Radiohead_-_Creep
+      value: Michael_Jackson_Billie_Jean1
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: midiIndexToPlay
-      value: 74
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: showMidiPlaying
@@ -1231,7 +1229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -1282,7 +1279,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 316fe3d4ca055f143913bfcd2c8df740, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.99607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1301,8 +1298,8 @@ Transform:
   m_GameObject: {fileID: 2065099439}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.54, y: 0.57, z: 0.1}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 0.15}
+  m_LocalPosition: {x: 1.1600001, y: 0.18000004, z: 0.811471}
+  m_LocalScale: {x: 3, y: 3, z: 0.30000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1338,7 +1335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   midiFilePlayer: {fileID: 143734484}
-  mole: {fileID: 0}
   kickSound: {fileID: 0}
   snareSound: {fileID: 0}
   hiHatSound: {fileID: 0}
@@ -1407,13 +1403,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141362258}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.556, y: 0.57, z: -0.011471184}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.008}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
+  m_LocalPosition: {x: 1.21, y: 0.18, z: 0.6999998}
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.014}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

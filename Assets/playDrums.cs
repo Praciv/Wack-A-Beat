@@ -37,8 +37,6 @@ public class playDrums : MonoBehaviour
         MidiLoad midiLoaded = midiFilePlayer.MPTK_Load();
         
         midiFilePlayer.OnEventNotesMidi.AddListener(OnMidiEvent);
-
-        StartCoroutine(sleep());
         
         audioSource = gameObject.AddComponent<AudioSource>();
 
@@ -81,6 +79,14 @@ public class playDrums : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(sleep());
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            midiFilePlayer.MPTK_Stop();
+        }
+        if(Input.GetKeyDown(KeyCode.H))
         {
             PlaySound(hiHatSound);
             TriggerDrum(42);

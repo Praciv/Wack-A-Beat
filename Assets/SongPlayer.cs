@@ -15,7 +15,19 @@ public class SongPlayer : MonoBehaviour
         }
 
         // Play the song with a delay
-        songAudioSource.Play();
+        //songAudioSource.Play();
         Debug.Log($"Song will play with a delay of {delay} seconds");
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            songAudioSource.Play();
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            songAudioSource.Stop();
+        }
     }
 }
