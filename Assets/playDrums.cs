@@ -21,6 +21,7 @@ public class playDrums : MonoBehaviour
     public AudioClip hiHatSound;
     public AudioClip rideCymbalSound;
     private AudioSource audioSource;
+    public AudioSource songAudioSource;
     void Start()
     {
 
@@ -41,6 +42,9 @@ public class playDrums : MonoBehaviour
         midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
 
         audioSource = gameObject.AddComponent<AudioSource>();
+
+        //songAudioSource.Play();
+        songAudioSource.PlayDelayed(3.0f);
     }
 
      void OnMidiEvent(List<MPTKEvent> midiEvents)
