@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7455b1db5ab54c0449b1e91254b3ea66
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - kickSound: {fileID: 8300000, guid: d1bdc37b77e476043820650f393189f5, type: 3}
+  - snareSound: {fileID: 8300000, guid: 8f9d05d9077a99048942693ba7fc00e9, type: 3}
+  - hiHatSound: {fileID: 8300000, guid: 9f108e5187fd8a9419a4a019cc2517f8, type: 3}
+  - rideCymbalSound: {fileID: 8300000, guid: 1b9507a217016b34d924ffff1256b930, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
