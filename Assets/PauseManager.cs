@@ -6,7 +6,10 @@ public class PauseManager : MonoBehaviour
     public MidiFilePlayer midiFilePlayer; // Reference to the MidiFilePlayer
      public AudioSource radioactiveAudioSource; // Reference to the Radioactive AudioSource
      public GameObject endGameButton; // Reference to End Game Button
+     public GameObject pauseGameButton;
      public GameObject PAUSED; // Reference to PAUSED Button
+
+      public GameObject endScreen;
     private bool isPaused = false;
 
     public void TogglePause()
@@ -79,14 +82,34 @@ public class PauseManager : MonoBehaviour
 public void EndGame()
     {
 
-    Debug.Log("Game Ended");
-    // Add logic to quit or restart the game
-       Application.Quit();
+Debug.Log("Displaying End Screen...");
+        
+        // Show the End Screen
+        if (endScreen != null)
+        {
+            pauseGameButton.SetActive(false);
+             endGameButton.SetActive(false);
+            endScreen.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("End Screen is not assigned in the Inspector!");
+        }
 
-       #if UNITY_EDITOR
-    UnityEditor.EditorApplication.isPlaying = false;
-#endif
+
+
+    
     }
+
+    public void exitGame()
+    {   
+    Debug.Log("Exiting Game...");
+    Application.Quit();
+
+    #if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+    #endif
+      }
 }
 
 
