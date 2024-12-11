@@ -15,6 +15,16 @@ public class MainMenuManager : MonoBehaviour
         root.Q<Button>("PlayButton").clicked += LoadGame;
         root.Q<Button>("TutorialButton").clicked += LoadTutorial;
         root.Q<Button>("QuitButton").clicked += QuitGame;
+
+    }
+
+    void Update()
+    {
+        // Listen for Escape key
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ReturnHome();
+        }
     }
 
     void LoadTutorial()
@@ -25,6 +35,10 @@ public class MainMenuManager : MonoBehaviour
     void LoadGame()
     {
         SceneManager.LoadScene("2dScene");
+    }
+
+    void ReturnHome() {
+        SceneManager.LoadScene("menu"); // Return to the menu
     }
 
     void QuitGame()
