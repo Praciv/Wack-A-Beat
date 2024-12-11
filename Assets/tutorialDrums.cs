@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Enables manual control of drums using the numers 1-4
 
@@ -40,7 +41,11 @@ public class TutorialDrums : MonoBehaviour
         {
             PlaySound(rideCymbalSound);
             TriggerDrum(51); // Ride Cymbal
+        }else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("menu");
         }
+
     }
 
     void PlaySound(AudioClip clip)

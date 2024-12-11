@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SongPlayer : MonoBehaviour
 {
     public AudioSource songAudioSource; // Reference to the AudioSource playing the song
     public float delay = 0.1f; // Delay in seconds before playing the song
-    private bool isPaused = true;
+    private bool isPaused = false;
+
+    public playDrums drumsController; // Spawn drumcontroller in here so its synced to the pause and play stuff
 
     void Start()
     {
@@ -12,6 +15,12 @@ public class SongPlayer : MonoBehaviour
         if (songAudioSource == null)
         {
             Debug.LogError("Song AudioSource is not assigned!");
+            return;
+        }
+
+        if (drumsController == null)
+        {
+            Debug.LogError("playDrums script is not assigned!");
             return;
         }
 
@@ -36,6 +45,7 @@ public class SongPlayer : MonoBehaviour
         if (songAudioSource !=null && !songAudioSource.isPlaying)
         {
             songAudioSource.Play();
+            drumsController.StartDrums();
             Debug.Log($"Song started.");
         }
     }
@@ -50,11 +60,13 @@ public class SongPlayer : MonoBehaviour
         if (isPaused)
         {
             songAudioSource.Pause();
+            drumsController.PauseDrums();
             Debug.Log("Song Paused");
         }
         else
         {
             songAudioSource.UnPause();
+            drumsController.ResumeDrums();
             Debug.Log("Song Resumed");
         }
     }
@@ -65,7 +77,9 @@ public class SongPlayer : MonoBehaviour
             return;
 
         songAudioSource.Stop();
+        drumsController.StopDrums();
         isPaused = false; // Reset the pause state
         Debug.Log("Song Stopped");
+        SceneManager.LoadScene("menu"); // Return to the menu
     }
 }

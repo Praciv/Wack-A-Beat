@@ -13,6 +13,7 @@ using UnityEngine.Experimental.AI;
 public class playDrums : MonoBehaviour
 {
     public MidiFilePlayer midiFilePlayer; 
+    private bool isPlaying = false; // track play status locally to sync with SongPlayer.cs
     private int targetChannel = 9;
 
     public AudioClip kickSound;
@@ -20,7 +21,7 @@ public class playDrums : MonoBehaviour
     public AudioClip hiHatSound;
     public AudioClip rideCymbalSound;
     private AudioSource audioSource;
-    public AudioSource songAudioSource;
+    public AudioSource songAudioSource; //unused?
     void Start()
     {
 
@@ -44,13 +45,51 @@ public class playDrums : MonoBehaviour
         //songAudioSource.PlayDelayed(3.0f);
     }
 
-    IEnumerator sleep()
-    {
-        yield return new WaitForSeconds(1.2f);
-
-        midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
-
+    public void StartDrums() {
+        if (!isPlaying) {
+            isPlaying = true; // toggle
+            midiFilePlayer.MPTK_Play();
+            Debug.Log("Drums started.");
+        }
     }
+
+    public void PauseDrums() {
+        if (isPlaying) {
+            isPlaying = false; // toggle
+            midiFilePlayer.MPTK_Pause();
+            Debug.Log("Drums paused.");
+        }
+    }
+
+    public void ResumeDrums() {
+        if (!isPlaying)
+        {
+            midiFilePlayer.MPTK_UnPause();
+            isPlaying = true;
+            Debug.Log("Drums resumed.");
+        }
+    }
+
+    public void StopDrums() {
+        if (isPlaying)
+        {
+            midiFilePlayer.MPTK_Stop();
+            isPlaying = false;
+            Debug.Log("Drums stopped.");
+        }
+    }
+
+
+
+
+
+    // IEnumerator sleep()
+    // {
+    //     yield return new WaitForSeconds(1.2f);
+
+    //     midiFilePlayer.MPTK_Play(alreadyLoaded: true);  
+
+    // }
 
      void OnMidiEvent(List<MPTKEvent> midiEvents)
     {
@@ -76,38 +115,38 @@ public class playDrums : MonoBehaviour
             midiFilePlayer.OnEventNotesMidi.RemoveListener(OnMidiEvent);
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(sleep());
-        }
-        else if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            midiFilePlayer.MPTK_Stop();
-        }
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            PlaySound(hiHatSound);
-            TriggerDrum(42);
-        }
-        else if (Input.GetKeyDown(KeyCode.J)) // Snare Drum
-        {
+    // void Update()
+    // {
+    //     if(Input.GetKeyDown(KeyCode.Space))
+    //     {
+    //         StartCoroutine(sleep());
+    //     }
+    //     else if(Input.GetKeyDown(KeyCode.Escape))
+    //     {
+    //         midiFilePlayer.MPTK_Stop();
+    //     }
+    //     if(Input.GetKeyDown(KeyCode.H))
+    //     {
+    //         PlaySound(hiHatSound);
+    //         TriggerDrum(42);
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.J)) // Snare Drum
+    //     {
            
-            PlaySound(snareSound);
-            TriggerDrum(38);
-        }
-        else if (Input.GetKeyDown(KeyCode.K)) // Kick Drum
-        {
-            PlaySound(kickSound);
-            TriggerDrum(35);
-        }
-        else if (Input.GetKeyDown(KeyCode.L)) // Ride Cymbal
-        {
-            PlaySound(rideCymbalSound);
-            TriggerDrum(51);
-        }
-    }
+    //         PlaySound(snareSound);
+    //         TriggerDrum(38);
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.K)) // Kick Drum
+    //     {
+    //         PlaySound(kickSound);
+    //         TriggerDrum(35);
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.L)) // Ride Cymbal
+    //     {
+    //         PlaySound(rideCymbalSound);
+    //         TriggerDrum(51);
+    //     }
+    // }
 
     String formatDrumValues(int code)
     {
@@ -148,19 +187,19 @@ public class playDrums : MonoBehaviour
     
     
 
-    void TriggerDrum(int drumValue)
-    {
-        string drumName = formatDrumValues(drumValue);
+    // void TriggerDrum(int drumValue)
+    // {
+    //     string drumName = formatDrumValues(drumValue);
         
-        if(drumName == " ")
-        {
-            Debug.LogWarning("Invalid drum type!");
-            return; 
-        }
+    //     if(drumName == " ")
+    //     {
+    //         Debug.LogWarning("Invalid drum type!");
+    //         return; 
+    //     }
 
-        Debug.Log($"Triggered {drumName}");
-        activateSprite(drumName);
-    }
+    //     Debug.Log($"Triggered {drumName}");
+    //     activateSprite(drumName);
+    // }
 
     void activateSprite(string objectName)
     {

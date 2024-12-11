@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 984566962}
   - component: {fileID: 984566961}
   - component: {fileID: 984566963}
+  - component: {fileID: 984566964}
   m_Layer: 0
   m_Name: Radioactive
   m_TagString: Untagged
@@ -424,6 +425,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songAudioSource: {fileID: 984566961}
   delay: 0
+  drumsController: {fileID: 984566964}
+--- !u!114 &984566964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984566959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1354f62bf79ab44ea8a3fd25d727b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  midiFilePlayer: {fileID: 143734484}
+  kickSound: {fileID: 8300000, guid: d1bdc37b77e476043820650f393189f5, type: 3}
+  snareSound: {fileID: 8300000, guid: 8f9d05d9077a99048942693ba7fc00e9, type: 3}
+  hiHatSound: {fileID: 8300000, guid: 9f108e5187fd8a9419a4a019cc2517f8, type: 3}
+  rideCymbalSound: {fileID: 8300000, guid: f0034494c0c40fa479339f2c255e0773, type: 3}
+  songAudioSource: {fileID: 0}
 --- !u!1 &1091437904
 GameObject:
   m_ObjectHideFlags: 0
