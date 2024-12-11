@@ -4,6 +4,7 @@ public class SongPlayer : MonoBehaviour
 {
     public AudioSource songAudioSource; // Reference to the AudioSource playing the song
     public float delay = 0.1f; // Delay in seconds before playing the song
+    private bool isPaused = true;
 
     void Start()
     {
@@ -14,20 +15,57 @@ public class SongPlayer : MonoBehaviour
             return;
         }
 
-        // Play the song with a delay
-        //songAudioSource.Play();
-        Debug.Log($"Song will play with a delay of {delay} seconds");
+        Invoke(nameof(PlaySong), delay);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TogglePause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopSong();
+        }
+    }
+
+    private void PlaySong()
+    {
+        if (songAudioSource !=null && !songAudioSource.isPlaying)
         {
             songAudioSource.Play();
+            Debug.Log($"Song started.");
         }
-        else if(Input.GetKeyDown(KeyCode.Escape))
+    }
+
+    private void TogglePause()
+    {
+        if (songAudioSource == null)
+            return;
+
+        isPaused = !isPaused;
+
+        if (isPaused)
         {
-            songAudioSource.Stop();
+            songAudioSource.Pause();
+            Debug.Log("Song Paused");
         }
+        else
+        {
+            songAudioSource.UnPause();
+            Debug.Log("Song Resumed");
+        }
+    }
+
+    private void StopSong()
+    {
+        if (songAudioSource == null)
+            return;
+
+        songAudioSource.Stop();
+        isPaused = false; // Reset the pause state
+        Debug.Log("Song Stopped");
     }
 }
