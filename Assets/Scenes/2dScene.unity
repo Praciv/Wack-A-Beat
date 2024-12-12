@@ -1139,7 +1139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: speed
-      value: 0.75
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114662785300262660, guid: 32a8d8859acf18d4ba134834a876d5ea, type: 3}
       propertyPath: transpose

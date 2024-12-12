@@ -18,6 +18,9 @@ public class SongChooserManager : MonoBehaviour
         root.Q<Button>("song6").clicked += loadSong6;
         root.Q<Button>("song7").clicked += loadSong7;
         root.Q<Button>("song8").clicked += loadSong8;
+
+        root.Q<Button>("speed1").clicked += slowSpeed;
+        root.Q<Button>("speed2").clicked += normalSpeed;
     }
 
     // Update is called once per frame
@@ -80,4 +83,13 @@ public class SongChooserManager : MonoBehaviour
         SceneManager.LoadScene("2dScene");
     }
 
+    void slowSpeed()
+    {
+        playDrums.speed = 0.75f; 
+    }
+
+    void normalSpeed()
+    {
+        playDrums.speed = 1f; 
+    }
 }

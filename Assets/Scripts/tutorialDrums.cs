@@ -122,7 +122,7 @@ public class TutorialDrums : MonoBehaviour
 
         // Wait for specified time
         // Could change this to show for as long as the tutorial-person wants
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.25f);
 
         // Make the sprite transparent again
         Color transparentColor = spriteRenderer.color;

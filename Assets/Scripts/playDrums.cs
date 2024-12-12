@@ -13,6 +13,7 @@ using UnityEngine.Experimental.AI;
 public class playDrums : MonoBehaviour
 {
     public static int songIndex { get; set; } 
+    public static float speed { get; set; }
     public MidiFilePlayer midiFilePlayer; 
     private bool isPlaying = false; // track play status locally to sync with SongPlayer.cs
     private int targetChannel = 9;
@@ -36,6 +37,8 @@ public class playDrums : MonoBehaviour
         midiFilePlayer.MPTK_MidiIndex = songIndex;
 
         MidiLoad midiLoaded = midiFilePlayer.MPTK_Load();
+
+        midiFilePlayer.MPTK_Speed = speed;
         
         midiFilePlayer.OnEventNotesMidi.AddListener(OnMidiEvent);
         
