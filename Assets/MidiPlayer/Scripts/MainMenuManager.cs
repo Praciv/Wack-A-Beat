@@ -34,7 +34,8 @@ public class MainMenuManager : MonoBehaviour
 
     void LoadGame()
     {
-        SceneManager.LoadScene("2dScene");
+        //SceneManager.LoadScene("2dScene");
+        SceneManager.LoadScene("songChooser");
     }
 
     void ReturnHome() {
