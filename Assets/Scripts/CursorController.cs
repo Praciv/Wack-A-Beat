@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CursorController : MonoBehaviour
@@ -8,6 +6,7 @@ public class CursorController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // turns the cursor on by default 
         Cursor.lockState = CursorLockMode.None;
         isCursorLocked = false;
     }
@@ -15,12 +14,14 @@ public class CursorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        //Let's the user turn off or on the cursor by pressing the c key
+        if (Input.GetKeyDown(KeyCode.C))
         {
             toggleCursorState();
         }
     }
 
+    //Function to flip the state of the cursor mode when called
     public void toggleCursorState()
     {
         if (isCursorLocked)

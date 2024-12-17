@@ -9,6 +9,7 @@ public class SongPlayer : MonoBehaviour
 
     public playDrums drumsController; // Spawn drumcontroller in here so its synced to the pause and play stuff
 
+    //checks all the relevant scripts are assigned then calls the PlaySong function 
     void Start()
     {
         // Check if the AudioSource is assigned
@@ -29,17 +30,20 @@ public class SongPlayer : MonoBehaviour
 
     void Update()
     {
+        //pauses or unpauses the song depending on key press
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TogglePause();
         }
 
+        //stops the song is the escape key is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             StopSong();
         }
     }
 
+    //starts the midi file by calling the relevant function 
     private void PlaySong()
     {
         if (songAudioSource !=null && !songAudioSource.isPlaying)
@@ -50,6 +54,7 @@ public class SongPlayer : MonoBehaviour
         }
     }
 
+    //reverses the state of the song to change if it is paused or not
     private void TogglePause()
     {
         if (songAudioSource == null)
@@ -71,6 +76,7 @@ public class SongPlayer : MonoBehaviour
         }
     }
 
+    //calls the relevant stop functions 
     private void StopSong()
     {
         if (songAudioSource == null)

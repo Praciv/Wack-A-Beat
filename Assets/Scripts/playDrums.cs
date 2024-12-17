@@ -1,14 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Timers;
 using MidiPlayerTK;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Audio;
-using UnityEngine.Experimental.AI;
 
 public class playDrums : MonoBehaviour
 {
@@ -17,15 +11,11 @@ public class playDrums : MonoBehaviour
     public MidiFilePlayer midiFilePlayer; 
     private bool isPlaying = false; // track play status locally to sync with SongPlayer.cs
     private int targetChannel = 9;
-    public AudioClip kickSound;
-    public AudioClip snareSound;
-    public AudioClip hiHatSound;
-    public AudioClip rideCymbalSound;
-    private AudioSource audioSource;
-    public AudioSource songAudioSource; //unused?
+    
+    //finds the midifileplayer, loads the song specified by the songIndex variable and the speed 
+    //adds the function to call when a midi note is played 
     void Start()
     {
-
         midiFilePlayer = FindAnyObjectByType<MidiFilePlayer>();
 
         if(midiFilePlayer == null)
@@ -40,11 +30,10 @@ public class playDrums : MonoBehaviour
 
         midiFilePlayer.MPTK_Speed = speed;
         
-        midiFilePlayer.OnEventNotesMidi.AddListener(OnMidiEvent);
-        
-        audioSource = gameObject.AddComponent<AudioSource>();
+        midiFilePlayer.OnEventNotesMidi.AddListener(OnMidiEvent);   
     }
 
+    //starts the midifileplayer and toggles the isPlaying variable to true
     public void StartDrums() {
         if (!isPlaying) {
             isPlaying = true; // toggle
@@ -53,6 +42,7 @@ public class playDrums : MonoBehaviour
         }
     }
 
+    //checks if the song is playing and pauses it
     public void PauseDrums() {
         if (isPlaying) {
             isPlaying = false; // toggle
@@ -61,6 +51,7 @@ public class playDrums : MonoBehaviour
         }
     }
 
+    //checks if the song is playing and if it isn't resumes it
     public void ResumeDrums() {
         if (!isPlaying)
         {
@@ -70,6 +61,7 @@ public class playDrums : MonoBehaviour
         }
     }
 
+    //checks if the song is playing and stops it if it is 
     public void StopDrums() {
         if (isPlaying)
         {
@@ -79,65 +71,32 @@ public class playDrums : MonoBehaviour
         }
     }
 
+    //called by the midi sequencer just before the notes are playing 
+    // by the midi synthesisor 
     void OnMidiEvent(List<MPTKEvent> midiEvents)
     {
+        //loops through all the midi events about to paly
         foreach (var midiEvent in midiEvents)
         {
             // Check if the event is on the target channel
             if (midiEvent.Channel == targetChannel)
             {
+                //checks if the midi event is a note being played 
                 if(midiEvent.Command == MPTKCommand.NoteOn && midiEvent.Velocity > 0)
                 {
-                    //MIDI values: https://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html#BMA1_3
                     Debug.Log($"Channel: {midiEvent.Channel}, Note: {midiEvent.Value}, Velocity: {midiEvent.Velocity}, Time: {midiEvent.RealTime}");
-                    //long noteDuration = midiEvent.Tick / midiFilePlayer.MPTK_DeltaTicksPerQuarterNote;
                     Debug.Log($"Note duration: {midiEvent.Duration / 1000.0f}");
-                    activateSprite(formatDrumValues(midiEvent.Value), midiEvent.Duration / 100.0f);
+                 
+                    //calls the activateSprite function with the drum name returned from the formatDrumValues function 
+                    activateSprite(formatDrumValues(midiEvent.Value));
                 }
             }
         }
     }
 
-    void OnDestroy()
-    {
-        // Unsubscribe to avoid memory leaks
-        if (midiFilePlayer != null)
-            midiFilePlayer.OnEventNotesMidi.RemoveListener(OnMidiEvent);
-    }
-
-    // void Update()
-    // {
-    //     if(Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         StartCoroutine(sleep());
-    //     }
-    //     else if(Input.GetKeyDown(KeyCode.Escape))
-    //     {
-    //         midiFilePlayer.MPTK_Stop();
-    //     }
-    //     if(Input.GetKeyDown(KeyCode.H))
-    //     {
-    //         PlaySound(hiHatSound);
-    //         TriggerDrum(42);
-    //     }
-    //     else if (Input.GetKeyDown(KeyCode.J)) // Snare Drum
-    //     {
-           
-    //         PlaySound(snareSound);
-    //         TriggerDrum(38);
-    //     }
-    //     else if (Input.GetKeyDown(KeyCode.K)) // Kick Drum
-    //     {
-    //         PlaySound(kickSound);
-    //         TriggerDrum(35);
-    //     }
-    //     else if (Input.GetKeyDown(KeyCode.L)) // Ride Cymbal
-    //     {
-    //         PlaySound(rideCymbalSound);
-    //         TriggerDrum(51);
-    //     }
-    // }
-
+    //MIDI values: https://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html#BMA1_3
+    //takes in the value from the midiEvent and maps it to a drum name 
+    //inline with the standard midi format specified above  
     String formatDrumValues(int code)
     {
         String drumName = " ";
@@ -161,37 +120,9 @@ public class playDrums : MonoBehaviour
         return drumName; 
     }
 
-
-    void PlaySound(AudioClip clip)
-    {
-        if (clip != null)
-        {
-            Debug.Log($"Playing sound: {clip.name}");
-            audioSource.PlayOneShot(clip);
-        }
-        else
-        {
-            //Debug.LogWarning($"No sound assigned for this drum! Called from: {new System.Diagnostics.StackTrace()}");
-        }
-    }
-    
-    
-
-    // void TriggerDrum(int drumValue)
-    // {
-    //     string drumName = formatDrumValues(drumValue);
-        
-    //     if(drumName == " ")
-    //     {
-    //         Debug.LogWarning("Invalid drum type!");
-    //         return; 
-    //     }
-
-    //     Debug.Log($"Triggered {drumName}");
-    //     activateSprite(drumName);
-    // }
-
-    void activateSprite(string objectName, float duration)
+    //validity checks to ensure the name passed in is a real drum 
+    //and if so gets its sprite renderer to change 
+    void activateSprite(string objectName)
     {
         GameObject drum = GameObject.Find(objectName);
 
@@ -202,12 +133,13 @@ public class playDrums : MonoBehaviour
             if (spriteRenderer != null)
             {
                 // Start coroutine to toggle sprite visibility
-                StartCoroutine(ToggleSpriteVisibility(spriteRenderer, duration));
+                StartCoroutine(ToggleSpriteVisibility(spriteRenderer));
             }
         }
     }
 
-    private IEnumerator ToggleSpriteVisibility(SpriteRenderer spriteRenderer, float duration)
+    //function to make a drums mole visible for a specified duration
+    private IEnumerator ToggleSpriteVisibility(SpriteRenderer spriteRenderer)
     {
         // Make the sprite visible
         Color visibleColor = spriteRenderer.color;

@@ -14,12 +14,14 @@ public class TutorialDrums : MonoBehaviour
 
     private AudioSource audioSource;
 
+    //assigns the audioSource variable 
     void Start()
     {
         // Attach AudioSource component if not already present
         audioSource = gameObject.AddComponent<AudioSource>();
     }
 
+    //checks if certain keys are pressed and triggers the relevant drum 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) // Key '1'
@@ -48,8 +50,8 @@ public class TutorialDrums : MonoBehaviour
 
     }
 
+    //plays the specified AudioClip once 
     void PlaySound(AudioClip clip)
-    // Method handles playing the MIDI sound when pressed
     {
         if (clip != null)
         {
@@ -62,8 +64,8 @@ public class TutorialDrums : MonoBehaviour
         }
     }
 
-    void TriggerDrum(int drumValue)
     // Method handles showing the mole for the drum being pressed
+    void TriggerDrum(int drumValue)
     {
         string drumName = FormatDrumValues(drumValue);
 
@@ -77,8 +79,9 @@ public class TutorialDrums : MonoBehaviour
         ActivateSprite(drumName);
     }
 
-    string FormatDrumValues(int code)
+    //MIDI values: https://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html#BMA1_3
     // Handles MIDI values
+    string FormatDrumValues(int code)
     {
         switch (code)
         {
@@ -97,6 +100,8 @@ public class TutorialDrums : MonoBehaviour
         }
     }
 
+    //validity checks to ensure the name passed in is a real drum 
+    //and if so gets its sprite renderer to change 
     void ActivateSprite(string objectName)
     {
         GameObject drum = GameObject.Find(objectName);
@@ -113,6 +118,7 @@ public class TutorialDrums : MonoBehaviour
         }
     }
 
+    //function to make a drums mole visible for a specified duration
     private IEnumerator ToggleSpriteVisibility(SpriteRenderer spriteRenderer)
     {
         // Make the sprite visible
